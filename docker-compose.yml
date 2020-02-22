@@ -1,0 +1,39 @@
+version: '3.2'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    depends_on:
+      - mongo
+    volumes:
+      - ./api:/api:rw,cached
+      - api_node_modules:/api/node_modules
+    restart: always
+    ports:
+        - "3000:3000"
+
+  client:
+    build:
+      context: ./client
+    volumes:
+      - ./client:/client:rw,cached
+      - client_node_modules:/client/node_modules
+    depends_on:
+      - api
+    restart: always
+    ports:
+      - "8080:8080"
+      - "8081:8081"
+    command: "npm run serve"
+
+  mongo:
+    container_name: omm_mongo
+    image: mongo
+    ports:
+      - '27017:27017'
+
+volumes:
+  api_node_modules:
+  client_node_modules:
