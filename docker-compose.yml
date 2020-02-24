@@ -9,17 +9,18 @@ services:
       - mongo
     volumes:
       - ./api:/api:rw,cached
-      - api_node_modules:/api/node_modules
+      - /api/node_modules
     restart: always
     ports:
         - "3000:3000"
+    command: "npm run serve"
 
   client:
     build:
       context: ./client
     volumes:
       - ./client:/client:rw,cached
-      - client_node_modules:/client/node_modules
+      - /client/node_modules
     depends_on:
       - api
     restart: always
@@ -33,7 +34,3 @@ services:
     image: mongo
     ports:
       - '27017:27017'
-
-volumes:
-  api_node_modules:
-  client_node_modules:

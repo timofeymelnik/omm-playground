@@ -1,12 +1,25 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 const port = 3000;
+const whitelist = ['http://localhost:8080']
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cors({
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(whitelist.indexOf(origin) === -1){
+      var message = "The CORS policy for this origin doesn`t " +
+      "allow access from the particular origin.";
+      return callback(new Error(message), false);
+    }
+    return callback(null, true);
+  }
+}))
 
 mongoose
   .connect(
