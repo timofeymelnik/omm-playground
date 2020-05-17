@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3000;
-const whitelist = ['http://localhost:8080']
+const port = 8000;
+const whitelist = ['http://localhost:3000']
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,12 +19,15 @@ app.use(cors({
     }
     return callback(null, true);
   }
-}))
+}));
 
 mongoose
   .connect(
     'mongodb://mongo:27017/omm',
-    { useNewUrlParser: true }
+    {
+      useUnifiedTopology: true,
+      useNewUrlParser: true
+    }
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));

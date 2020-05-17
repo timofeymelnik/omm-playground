@@ -1,4 +1,4 @@
-const _apiHost = "http://localhost:3000/api";
+const _apiHost = "http://localhost:8000/api";
 
 async function request(url, params, method = "GET") {
   const options = {
