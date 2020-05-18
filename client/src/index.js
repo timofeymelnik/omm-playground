@@ -3,10 +3,21 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import Monument from './components/monument'
+
+
+const monuments = ['1', '2', '3'];
+
+function addMonument(name) {
+  monuments.push(name)
+}
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {monuments.map(monument => (<Monument
+      addMonument={addMonument}
+      monument={monument} />))}
+    <App text='Шумихин'/>
   </React.StrictMode>,
   document.getElementById('root')
 );
