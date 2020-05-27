@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 
-function App(props) {
+function App() {
   return (
-    <div className="App">Open Monument Map {props.text}</div>
+    <div className="App">Open Monument Map</div>
   );
 }
 
