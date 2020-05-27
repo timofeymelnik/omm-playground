@@ -1,9 +1,13 @@
 import React from 'react';
 import './App.css';
+import Header from './components/header'
+import { Button } from '@material-ui/core';
 
-function App(props) {
+function App() {
   return (
-    <div className="App">Open Monument Map {props.text}</div>
+    <div className="App">
+      <Header name="OMM" parentMethod={(data) => {console.log(data)}}/>
+    </div>
   );
 }
 
