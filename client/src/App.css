@@ -13,3 +13,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+.drawer-navigation {
+  min-width: 250px;
+  padding: 24px 12px;
+  box-sizing: border-box;
+}
